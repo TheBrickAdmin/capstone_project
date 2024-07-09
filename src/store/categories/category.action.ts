@@ -4,7 +4,7 @@ import {
   createAction,
   Action,
   ActionWithPayload,
-  withMatcher
+  withMatcher,
 } from "../../utils/reducer/reducer.utils";
 
 export type FetchCategoriesStart =
@@ -22,7 +22,8 @@ export type FetchCategoriesFailed = ActionWithPayload<
 
 export const fetchCategoriesStart = withMatcher(
   (): FetchCategoriesStart =>
-    createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START));
+    createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START)
+);
 
 export const fetchCategoriesSuccess = withMatcher(
   (categoriesArray: Category[]): FetchCategoriesSuccess =>
@@ -34,8 +35,5 @@ export const fetchCategoriesSuccess = withMatcher(
 
 export const fetchCategoriesFailed = withMatcher(
   (error: Error): FetchCategoriesFailed =>
-    createAction(
-      CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
-      error
-    )
+    createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
 );

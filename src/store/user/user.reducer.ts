@@ -5,45 +5,46 @@ import {
   signInFailed,
   signUpFailed,
   signOutSuccess,
-  signOutFailed
+  signOutFailed,
 } from "./user.action";
 
 import { UserData } from "../../utils/firebase/firebase.utils";
 
 export type UserState = {
-  readonly currentUser: UserData | null,
-  readonly isLoading: boolean,
-  readonly error: Error | null
-}
+  readonly currentUser: UserData | null;
+  readonly isLoading: boolean;
+  readonly error: Error | null;
+};
 
 const USER_INITIAL_STATE: UserState = {
   currentUser: null,
   isLoading: false,
-  error: null
+  error: null,
 };
 
-export const userReducer = (
-  state = USER_INITIAL_STATE,
-  action: AnyAction
-) => {
-  if(signInSuccess.match(action)) {
+export const userReducer = (state = USER_INITIAL_STATE, action: AnyAction) => {
+  if (signInSuccess.match(action)) {
     return {
       ...state,
-      currentUser: action.payload
+      currentUser: action.payload,
     };
   }
 
-  if(signOutSuccess.match(action)) {
+  if (signOutSuccess.match(action)) {
     return {
       ...state,
-      currentUser: null
+      currentUser: null,
     };
   }
 
-  if(signOutFailed.match(action) || signInFailed.match(action) || signUpFailed.match(action)) {
+  if (
+    signOutFailed.match(action) ||
+    signInFailed.match(action) ||
+    signUpFailed.match(action)
+  ) {
     return {
       ...state,
-      error: action.payload
+      error: action.payload,
     };
   }
 
